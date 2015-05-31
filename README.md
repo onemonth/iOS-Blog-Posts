@@ -102,7 +102,13 @@ println(anotherName) // nil
 
 Note the addition of a question mark to our variable declaration. The question mark signifies that the variable is an Optional, a variable that can be something (a value) or nothing (`nil`). Without the question mark these variables can never be `nil`. Note that declaring a variable as Optional does not effect its mutability. `vars` remain mutable and `lets` remain immutable.
 
-Also note the use of an exclamation mark in select locations. The exclamation mark is used to forcibly gain access to the value that an optional variable holds. 
+Also note the use of an exclamation mark in select locations. The exclamation mark is a heavy-handed way to "unwrap" i.e. gain access to the value that an optional variable holds. 
+
+###Unwrapping Optionals
+
+
+
+###In practice
 
 So this means that we have four different kinds of variables at our disposal.
 
@@ -111,10 +117,7 @@ So this means that we have four different kinds of variables at our disposal.
 - `lets` (immutable, never nil)
 - Optional `lets` (immutable, nilable)
 
-###In practice
+How does this play out in practice?
 
-What does this look like in practice?
-
-How to unwrap?
 
 They empower us to write clearer and more stable code and empower the compiler to better help us achieve this goal.
