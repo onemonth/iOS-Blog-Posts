@@ -102,10 +102,54 @@ println(anotherName) // nil
 
 Note the addition of a question mark to our variable declaration. The question mark signifies that the variable is an Optional, a variable that can be something (a value) or nothing (`nil`). Without the question mark these variables can never be `nil`. Note that declaring a variable as Optional does not effect its mutability. `vars` remain mutable and `lets` remain immutable.
 
-Also note the use of an exclamation mark in select locations. The exclamation mark is a heavy-handed way to "unwrap" i.e. gain access to the value that an optional variable holds. 
+Also note the use of an exclamation mark in select locations. The exclamation mark is a heavy-handed way to [unwrap](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html) i.e. gain access to the value that an optional variable holds. 
 
 ###Unwrapping Optionals
 
+Allowing variables to be either something or nothing injects risk into our programs. If we assume a variable is something and it turns out to be nothing, our program might behave unpredictably or worse yet crash. To mitigate this risk and avoid having to make assumptions, we want to know definitively whether a variable is something or nothing before working with it. Anyone who has worked with Objective-c is familiar with this upfront runtime check. 
+
+```Objective-c
+NSString *name = @"Alfie";
+
+// ...
+
+if (name == nil) {
+    // Do something
+} else {
+    // Do something else
+}
+```
+
+Swift Optionals allow this check to happen at compile-time. If we attempt to use an optional variable without [unwrapping](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html) it, the compiler will throw an error instructing us to first unwrap the value. Which means that the compiler will never let us use an optional value without first being certain that it is something or nothing. 
+
+We can safely unwrap optionals like this:
+
+```Swift
+var name: String? = "Alfie"
+println(name) // Optional("Alfie")
+
+name = name + " Hanssen" // Compiler Error
+
+if let something = name {
+    // The value is not nil, use it with confidence
+    something = something + " Hanssen"
+    println(something) // "Alfie Hanssen"
+} else {
+    // The value is nil
+}
+```
+
+A heavy-handed way to unwrap an optional is to make use of the exclamation mark. This is called force unwrapping:
+
+```Swift
+var name: String? = "Alfie"
+println(name) // Optional("Alfie")
+
+name = name! + " Hanssen" 
+println(name) // Optional("Alfie Hanssen")
+```
+
+The former is greatly preferred to the latter. By force unwrapping the optional we're asserting that we're positive the variable is not nil. But if we are wrong our program will crash. Force unwrapping puts the onus back on us to keep track of what is nil and what is not, and in doing so brings all of the risk and assumptions back into our program. 
 
 
 ###In practice
