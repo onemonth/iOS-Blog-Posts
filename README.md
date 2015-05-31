@@ -149,19 +149,24 @@ name = name! + " Hanssen"
 println(name) // Optional("Alfie Hanssen")
 ```
 
-The former is greatly preferred to the latter. By force unwrapping the optional we're asserting that we're positive the variable is not nil. But if we are wrong our program will crash. Force unwrapping puts the onus back on us to keep track of what is nil and what is not, and in doing so brings all of the risk and assumptions back into our program. 
+The former is greatly preferred to the latter. By force unwrapping the optional we're asserting that we're positive the variable is not nil. But if we're wrong our program will crash. Force unwrapping puts the onus back on us humans to keep track of what is nil and what is not, and in doing so brings all of the risk and assumptions back into our code. 
 
+###Optionals in Practice
 
-###In practice
-
-So this means that we have four different kinds of variables at our disposal.
+This means that we have four different kinds of variables at our disposal:
 
 - `vars` (mutable, never nil)
 - Optional `vars` (mutable, nilable)
 - `lets` (immutable, never nil)
 - Optional `lets` (immutable, nilable)
 
-How does this play out in practice?
+So when do we use Optionals? We use Optionals when a `nil` value is meaningful. 
+
+Consider the case of a model object in our iOS app that represents a video on our server. If the video's `image_url` property is non-`nil` we know it has a thumbnail image that we can use. And if it's `nil` we know it doesn't. 
+
+Or consider the case of an `NSError` object passed as an argument to a network call's completion handler. Not every network call will return an error, so it makes sense for this error object to be Optional.
+
+On the other hand, 
 
 
 They empower us to write clearer and more stable code and empower the compiler to better help us achieve this goal.
