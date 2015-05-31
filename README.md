@@ -153,20 +153,21 @@ The former is greatly preferred to the latter. By force unwrapping the optional 
 
 ###Optionals in Practice
 
-This means that we have four different kinds of variables at our disposal:
-
-- `vars` (mutable, never nil)
-- Optional `vars` (mutable, nilable)
-- `lets` (immutable, never nil)
-- Optional `lets` (immutable, nilable)
-
 So when do we use Optionals? We use Optionals when a `nil` value is meaningful. 
 
 Consider the case of a model object in our iOS app that represents a video on our server. If the video's `image_url` property is non-`nil` we know it has a thumbnail image that we can use. And if it's `nil` we know it doesn't. 
 
 Or consider the case of an `NSError` object passed as an argument to a network call's completion handler. Not every network call will return an error, so it makes sense for this error object to be Optional.
 
-On the other hand, 
+On the other hand, our program might make use of a `Person` object. And it might require that every `Person` have an `age`. In this scenario `age` would be non-optional, passed into the `Person` constructor and never allowed to be nil.  
 
+###In Summary
 
-They empower us to write clearer and more stable code and empower the compiler to better help us achieve this goal.
+In Swift, we have four different kinds of variables at our disposal:
+
+- `vars` (mutable, never nil)
+- Optional `vars` (mutable, nilable)
+- `lets` (immutable, never nil)
+- Optional `lets` (immutable, nilable)
+
+This simple toolset empowers us to write clearer code and more stable programs. And it allows the compiler to be a better partner in helping us achieve these goals.
