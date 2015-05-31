@@ -77,10 +77,10 @@ Note the addition of a question mark to our variable declaration. The question m
 
 So this means that we have four different kinds of variables at our disposal.
 
-`vars` (mutable, never nil)
-Optional `vars` (mutable, nilable)
-`lets` (immutable, never nil)
-Optional `lets` (immutable, nilable)
+- `vars` (mutable, never nil)
+- Optional `vars` (mutable, nilable)
+- `lets` (immutable, never nil)
+- Optional `lets` (immutable, nilable)
 
 ###In practice
 
