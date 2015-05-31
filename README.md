@@ -13,7 +13,7 @@ var myName: String = "Fred"
 var myName = "Fred"
 ```
 
-Specifically, Optionals work in tandem with two distinctly different kinds of variables: `var`s and `let`s. In order to understand Optionals we must first understand `vars` and `lets`.
+Specifically, Optionals work in tandem with two distinctly different kinds of variables: `vars` and `lets`. In order to understand Optionals we must first understand `vars` and `lets`.
 
 The primary distinction between `vars` and `lets` is that `vars` are mutable and `lets` are immutable. In other words, we can change the value of a `var` as many times as we want, but once we set the value of a `let`, we can never change it. Let's look at some examples.
 
