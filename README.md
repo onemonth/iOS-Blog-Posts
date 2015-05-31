@@ -1,79 +1,108 @@
 
 ##Swift Optionals
 
-###Intro
-
 Optionals are a powerful feature of the Swift programming language. But they can be difficult to understand and use effectively. Let's review the essentials.
 
-Optionals work in tandem with variables. A variable is a construct that we use to hold onto a piece of data. At a minimum we usually give a variable a name, type and value:
+Optionals work in tandem with variables. A variable is a construct that we use to hold onto a piece of data. At a minimum we usually give a variable a name, type and value.
 
 ```Swift
 // Here we explicitly specify the type
-var myName: String = "Fred"
+var name: String = "Fred"
 
 // But the type can also be inferred from the fact that we're assigning it a String value
-var myName = "Fred"
+var name = "Fred"
 ```
 
 ###vars and lets
 
-Specifically, Optionals work in tandem with two distinctly different kinds of variables: `vars` and `lets`. In order to understand Optionals we must first understand `vars` and `lets`.
+Swift offers us two distinctly different kinds of variables: `vars` and `lets`. In order to understand Optionals we must first understand `vars` and `lets`.
 
 The primary distinction between `vars` and `lets` is that `vars` are mutable and `lets` are immutable. In other words, we can change the value of a `var` as many times as we want, but once we set the value of a `let`, we can never change it. Let's look at some examples.
 
 ```Swift
 // vars
 
-var name = "Fred" // "Fred"
+var mutableName = "Fred"
+println(mutableName) // "Fred"
 
-name = name + " Velvet" // "Fred Velvet"
+mutableName = "Freddy"
+println(mutableName) // "Freddy"
 
-name = "Freddy" // "Freddy"
-
-name = nil // Compiler error (this is where Optionals come into play)
+mutableName = mutableName + " Velvet"
+println(mutableName) // "Freddy Velvet"
 
 // lets
 
-let name = "Fred"
+let immutableName = "Fred"
+println(immutableName) // "Fred"
 
-name = name + " Velvet" // Compiler error
+immutableName = "Freddy" // Compiler error
 
-name = "Freddy" // Compiler error
-
-name = nil // Compiler error (this is where Optionals come into play)
+immutableName = immutableName + " Velvet" // Compiler error
 ```
 
-As you can see the compiler enforces these mutability rules for us. And in doing so it allows us to be explicit about our intentions. If we used `vars` alone we'd be wandering into a lawless land. Mad Max territory. Variables that we intend to be immutable might unintentionally be mutated. But in this day and age we can elect to use `vars` and `lets` where appropriate, and proceed with confidence.
+Test these out in a [Swift Playground](http://www.objc.io/issue-16/rapid-prototyping-in-swift-playgrounds.html) and you'll see that the compiler enforces these mutability rules for us. And in doing so it forces us to be explicit about our intentions. If we used `vars` alone we'd be wandering into a lawless land. Mad Max territory. Variables that we intend to be immutable might unintentionally be mutated. But in this day and age we can elect to use `vars` and `lets` where appropriate, and proceed with confidence.
 
 ###Optionals
 
-Optionals add a layer of complexity to `vars` and `lets`. They modify `vars` and `lets` to make a distinction between variables whose value can be either something or nothing, and variables whose value can be something but never nothing. In the context of Swift, `nil` is equivalent to nothing, the absence of a value. Let's look at some examples:
+Optionals add a layer of complexity to `vars` and `lets`. They modify `vars` and `lets` to make a distinction between variables whose value can be either something or nothing, and variables whose value can be something but never nothing. In the context of Swift, nothing is expressed with `nil`, the absence of a value. Let's look at some examples.
 
 ```Swift
-// vars
+// Non-optional vars
 
-var name: String? = "Fred" // ???
+var mutableName = "Fred"
+println(mutableName) // "Fred"
 
-name = nil // ???
+mutableName = "Freddy"
+println(mutableName) // "Freddy"
 
-name = "Freddy" // ???
+mutableName = mutableName + " Velvet"
+println(mutableName) // "Freddy Velvet"
 
-name = name + " Velvet" // ???
+mutableName = nil // Compiler error
 
-name = nil // ???
+// Optional vars
 
-// lets
+var mutableName: String? = "Fred"
+println(mutableName) // Optional("Fred")
 
-let name: String? = "Fred"
+mutableName = "Freddy"
+println(mutableName) // Optional("Freddy")
 
-name = name + " Velvet" // Compiler error
+mutableName = mutableName! + " Velvet"
+println(mutableName) // Optional("Freddy Velvet")
 
-name = "Freddy" // Compiler error
+mutableName = nil // nil
 
-name = nil // Ok
+// Non-optional lets
+
+let immutableName = "Fred"
+println(immutableName) // "Fred"
+
+immutableName = "Freddy" // Compiler error
+
+immutableName = immutableName + " Velvet" // Compiler error
+
+immutableName = nil // Compiler error
+
+// Optional lets
+
+let immutableName: String? = "Fred"
+println(immutableName) // Optional("Fred")
+
+immutableName = "Freddy" // Compiler error
+
+immutableName = immutableName! + " Velvet" // Compiler error
+
+immutableName = nil // Compiler error
+
+let anotherName: String? = nil 
+println(anotherName) // nil
 ```
 
 Note the addition of a question mark to our variable declaration. The question mark signifies that the variable is an Optional, a variable that can be something (a value) or nothing (`nil`). Without the question mark these variables can never be `nil`. Note that declaring a variable as Optional does not effect its mutability. `vars` remain mutable and `lets` remain immutable.
+
+Also note the use of an exclamation mark in select locations. The exclamation mark is used to forcibly gain access to the value that an optional variable holds. 
 
 So this means that we have four different kinds of variables at our disposal.
 
