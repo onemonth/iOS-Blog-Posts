@@ -1,5 +1,7 @@
 
-##Optionals
+##Swift Optionals
+
+###Intro
 
 Optionals are a powerful feature of the Swift programming language. But they can be difficult to understand and use effectively. Let's review the essentials.
 
@@ -12,6 +14,8 @@ var myName: String = "Fred"
 // But the type can also be inferred from the fact that we're assigning it a String value
 var myName = "Fred"
 ```
+
+###vars and lets
 
 Specifically, Optionals work in tandem with two distinctly different kinds of variables: `vars` and `lets`. In order to understand Optionals we must first understand `vars` and `lets`.
 
@@ -40,6 +44,8 @@ name = nil // Compiler error (this is where Optionals come into play)
 ```
 
 As you can see the compiler enforces these mutability rules for us. And in doing so it allows us to be explicit about our intentions. If we used `vars` alone we'd be wandering into a lawless land. Mad Max territory. Variables that we intend to be immutable might unintentionally be mutated. But in this day and age we can elect to use `vars` and `lets` where appropriate, and proceed with confidence.
+
+###Optionals
 
 Optionals add a layer of complexity to `vars` and `lets`. They modify `vars` and `lets` to make a distinction between variables whose value can be either something or nothing, and variables whose value can be something but never nothing. In the context of Swift, `nil` is equivalent to nothing, the absence of a value. Let's look at some examples:
 
@@ -76,6 +82,7 @@ Optional `vars` (mutable, nilable)
 `lets` (immutable, never nil)
 Optional `lets` (immutable, nilable)
 
+###In practice
 
 What does this look like in practice?
 
