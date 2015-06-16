@@ -34,10 +34,10 @@ Optionals work in tandem with variables. A variable is a construct that we use t
 
 ```Swift
 // Here we explicitly specify the type
-var name: String = "Fred"
+var beverage: String = "Leffe"
 
 // But the type can also be inferred from the fact that we're assigning it a String value
-var name = "Fred"
+var name = "Leffe"
 ```
 
 ####vars and lets
@@ -49,23 +49,23 @@ The primary distinction between `vars` and `lets` is that `vars` are mutable and
 ```Swift
 // vars
 
-var mutableName = "Fred"
-println(mutableName) // "Fred"
+var mutableBeverage = "Leffe"
+println(mutableBeverage) // "Leffe"
 
-mutableName = "Freddy"
-println(mutableName) // "Freddy"
+mutableBeverage = "Bud"
+println(mutableBeverage) // "Bud"
 
-mutableName = mutableName + " Velvet"
-println(mutableName) // "Freddy Velvet"
+mutableBeverage = mutableBeverage + "weiser"
+println(mutableBeverage) // "Budweiser"
 
 // lets
 
-let immutableName = "Fred"
-println(immutableName) // "Fred"
+let immutableBeverage = "Bud"
+println(immutableBeverage) // "Bud"
 
-immutableName = "Freddy" // Compiler error
+immutableBeverage = "Leffe" // Compiler error
 
-immutableName = immutableName + " Velvet" // Compiler error
+immutableBeverage = immutableBeverage + "weiser" // Compiler error
 ```
 
 Test these out in a [Swift Playground](http://www.objc.io/issue-16/rapid-prototyping-in-swift-playgrounds.html) and you'll see that the compiler enforces these mutability rules for us. And in doing so it forces us to be explicit about our intentions. If we used `vars` alone we'd be wandering into a lawless land. Mad Max territory. Variables that we intend to be immutable might unintentionally be mutated. But in this day and age we can elect to use `vars` and `lets` where appropriate, and proceed with confidence.
@@ -77,54 +77,54 @@ Optionals add a layer of complexity to `vars` and `lets`. They modify `vars` and
 ```Swift
 // Non-optional vars
 
-var mutableName = "Fred"
-println(mutableName) // "Fred"
+var mutableBeverage = "Leffe"
+println(mutableBeverage) // "Leffe"
 
-mutableName = "Freddy"
-println(mutableName) // "Freddy"
+mutableBeverage = "Bud"
+println(mutableBeverage) // "Bud"
 
-mutableName = mutableName + " Velvet"
-println(mutableName) // "Freddy Velvet"
+mutableBeverage = mutableBeverage + "weiser"
+println(mutableBeverage) // "Budweiser"
 
-mutableName = nil // Compiler error
+mutableBeverage = nil // Compiler error
 
 // Optional vars
 
-var mutableName: String? = "Fred"
-println(mutableName) // Optional("Fred")
+var mutableCostume: String? = "Dracula"
+println(mutableCostume) // Optional("Dracula")
 
-mutableName = "Freddy"
-println(mutableName) // Optional("Freddy")
+mutableCostume = "Frankenstein"
+println(mutableCostume) // Optional("Frankenstein")
 
-mutableName = mutableName! + " Velvet"
-println(mutableName) // Optional("Freddy Velvet")
+mutableCostume = "Bride of " + mutableCostume!
+println(mutableCostume) // Optional("Bride of Frankenstein")
 
-mutableName = nil // nil
+mutableCostume = nil // nil
 
 // Non-optional lets
 
-let immutableName = "Fred"
-println(immutableName) // "Fred"
+let immutableBeverage = "Bud"
+println(immutableBeverage) // "Bud"
 
-immutableName = "Freddy" // Compiler error
+immutableBeverage = "Leffe" // Compiler error
 
-immutableName = immutableName + " Velvet" // Compiler error
+immutableBeverage = immutableBeverage + "weiser" // Compiler error
 
-immutableName = nil // Compiler error
+immutableBeverage = nil // Compiler error
 
 // Optional lets
 
-let immutableName: String? = "Fred"
-println(immutableName) // Optional("Fred")
+let immutableCostume: String? = "Dracula"
+println(immutableCostume) // Optional("Dracula")
 
-immutableName = "Freddy" // Compiler error
+immutableCostume = "Frankenstein" // Compiler error
 
-immutableName = immutableName! + " Velvet" // Compiler error
+immutableCostume = "Bride of " + immutableName! // Compiler error
 
-immutableName = nil // Compiler error
+immutableCostume = nil // Compiler error
 
-let anotherName: String? = nil 
-println(anotherName) // nil
+let anotherCostume: String? = nil 
+println(anotherCostume) // nil
 ```
 
 Note the addition of a question mark to our variable declaration. The question mark signifies that the variable is an Optional, a variable that can be something (a value) or nothing (`nil`). Without the question mark these variables can never be `nil`. Note that declaring a variable as Optional does not effect its mutability. `vars` remain mutable and `lets` remain immutable.
@@ -136,14 +136,14 @@ Also note the use of an exclamation mark in select locations. The exclamation ma
 Allowing variables to be either something or nothing injects risk into our programs. If we assume a variable is something and it turns out to be nothing, our program might behave unpredictably or worse yet crash. To mitigate this risk and avoid having to make assumptions, we want to know definitively whether a variable is something or nothing before working with it. Anyone who has worked with Objective-c is familiar with this upfront runtime check. 
 
 ```Objective-c
-NSString *name = @"Alfie";
+NSString *costume = @"Dracula";
 
 // ...
 
-if (name == nil) {
-    // Do something
+if (costume == nil) {
+    // Do something for this plain clothes guest
 } else {
-    // Do something else
+    // Do something else for this costumed guest
 }
 ```
 
@@ -152,15 +152,15 @@ Swift Optionals allow this check to happen at compile-time. If we attempt to use
 We can safely unwrap optionals like this:
 
 ```Swift
-var name: String? = "Alfie"
-println(name) // Optional("Alfie")
+var costume: String? = "Werewolf"
+println(costume) // Optional("Werewolf")
 
-name = name + " Hanssen" // Compiler Error
+costume = costume + " dressed as Michael J Fox" // Compiler Error
 
-if let something = name {
+if let something = costume {
     // The value is not nil, use it with confidence
-    something = something + " Hanssen"
-    println(something) // "Alfie Hanssen"
+    something = something + " dressed as Michael J Fox"
+    println(something) // "Werewolf dressed as Michael J Fox"
 } else {
     // The value is nil
 }
@@ -169,11 +169,11 @@ if let something = name {
 A heavy-handed way to unwrap an optional is to make use of the exclamation mark. This is called force unwrapping:
 
 ```Swift
-var name: String? = "Alfie"
-println(name) // Optional("Alfie")
+var costume: String? = "Werewolf"
+println(costume) // Optional("Werewolf")
 
-name = name! + " Hanssen" 
-println(name) // Optional("Alfie Hanssen")
+costume = costume! + " dressed as Michael J Fox" 
+println(costume) // Optional("Werewolf dressed as Michael J Fox")
 ```
 
 The former is greatly preferred to the latter. By force unwrapping the optional we're asserting that we're positive the variable is not nil. But if we're wrong our program will crash. Force unwrapping puts the onus back on us humans to keep track of what is nil and what is not, and in doing so brings all of the risk and assumptions back into our code. 
