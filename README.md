@@ -1,7 +1,34 @@
 
 ##Swift Optionals
 
-Optionals are a powerful feature of the Swift programming language. But they can be difficult to understand and use effectively. Let's review the essentials.
+Optionals are a powerful feature of the Swift programming language, but they can be difficult to understand and use effectively. Let's review the essentials.
+
+###At a high level, what are Optionals? 
+
+Let's say a mutual friend is throwing a Halloween party. The invitation outlines the pertinent details (e.g. time and location) and among other things it says, "bring a beverage, costumes optional." Now if we wanted to represent this party and its guests in code, we might create a `Party` object and a `Guest` object, and we might translate the above details into properties on these classes. However, in order to accurately represent this Halloween party we want to express the fact that costumes are optional. We do this like so:
+
+```Swift
+class Party
+{
+    var time: NSDate
+    var location: CGPoint
+    var guests: Array<Guest>
+    
+    // ...
+}
+
+class Guest 
+{
+    var beverage: String // Each guest must have a beverage
+    var costume: String? // Each guest can choose to come in costume or plain clothes (i.e. costumes optional)
+    
+    // ...
+}
+```
+
+In Swift, the `?` is how we designate a variable as Optional. And this just means that it's okay for the variable to have a value (`costume = "Frankenstein"`) or to not have a value (`costume = nil`). In contrast, every guest must have a beverage, this is expressed by the absence of a `?`, and the compiler will enforce this for us.  
+
+###A little background
 
 Optionals work in tandem with variables. A variable is a construct that we use to hold onto a piece of data. At a minimum we usually give a variable a name, type and value.
 
