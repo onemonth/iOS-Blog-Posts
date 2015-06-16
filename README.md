@@ -40,7 +40,7 @@ var name: String = "Fred"
 var name = "Fred"
 ```
 
-###vars and lets
+####vars and lets
 
 Swift offers us two distinctly different kinds of variables: `vars` and `lets`. In order to understand Optionals we must first understand `vars` and `lets`.
 
@@ -70,7 +70,7 @@ immutableName = immutableName + " Velvet" // Compiler error
 
 Test these out in a [Swift Playground](http://www.objc.io/issue-16/rapid-prototyping-in-swift-playgrounds.html) and you'll see that the compiler enforces these mutability rules for us. And in doing so it forces us to be explicit about our intentions. If we used `vars` alone we'd be wandering into a lawless land. Mad Max territory. Variables that we intend to be immutable might unintentionally be mutated. But in this day and age we can elect to use `vars` and `lets` where appropriate, and proceed with confidence.
 
-###Optionals
+####Something and Nothing
 
 Optionals add a layer of complexity to `vars` and `lets`. They modify `vars` and `lets` to make a distinction between variables whose value can be either something or nothing, and variables whose value can be something but never nothing. In the context of Swift, nothing is expressed with `nil`, the absence of a value. Let's look at some examples.
 
